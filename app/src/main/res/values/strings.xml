@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Quiz</string>
+    <string name="materi">Materi</string>
+    <string name="result">Result</string>
+    <string name="selamat">Selamat</string>
+    <string name="score">Score</string>
+    <string name="point">Point</string>
+    <string name="next">Next</string>
+    <string name="lanjut">Lanjut</string>
+    <string name="soal_1_30">Soal 1/30</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a elit nisl. Morbi sed felis convallis, commodo urna sagittis, ornare tortor. Etiam a feugiat quam.</string>
+    <string name="todo">TODO</string>
+    <string name="nomor">nomor</string>
+    <string name="name">name</string>
+    <string name="login_google">Login Google</string>
+    <string name="log_out">Log Out</string>
+</resources>
