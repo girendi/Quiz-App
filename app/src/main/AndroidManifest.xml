@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.quiz">
 
+    <uses-permission android:name="android.permission." />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,9 +26,11 @@
             android:name=".activity.QuizActivity"
             android:parentActivityName=".activity.MainActivity" />
         <activity android:name=".activity.HasilActivity" />
-        <activity android:name=".activity.ScoreActivity"
-            android:parentActivityName=".activity.MainActivity"/>
-        <activity android:name=".activity.LoginActivity"/>
+        <activity
+            android:name=".activity.ScoreActivity"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.ResultActivity"></activity>
     </application>
 
 </manifest>

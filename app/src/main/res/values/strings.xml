@@ -10,8 +10,9 @@
     <string name="soal_1_30">Soal 1/30</string>
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a elit nisl. Morbi sed felis convallis, commodo urna sagittis, ornare tortor. Etiam a feugiat quam.</string>
     <string name="todo">TODO</string>
-    <string name="nomor">nomor</string>
-    <string name="name">name</string>
+    <string name="nomor">Nomor</string>
+    <string name="name">Name</string>
     <string name="login_google">Login Google</string>
     <string name="log_out">Log Out</string>
+    <string name="peringkat">Peringkat</string>
 </resources>

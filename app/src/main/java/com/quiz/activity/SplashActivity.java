@@ -12,7 +12,6 @@ import com.quiz.R;
 public class SplashActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,23 +22,12 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 mAuth = FirebaseAuth.getInstance();
-                mAuthListener = new FirebaseAuth.AuthStateListener() {
-                    @Override
-                    public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                        if (firebaseAuth.getCurrentUser() != null){
-                            startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                        }else {
-                            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                        }
-                    }
-                };
+                if (mAuth.getCurrentUser() != null){
+                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                }else {
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                }
             }
         }, 3000);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
     }
 }

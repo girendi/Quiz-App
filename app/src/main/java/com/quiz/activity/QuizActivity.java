@@ -1,6 +1,8 @@
 package com.quiz.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -12,10 +14,18 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.quiz.R;
 import com.quiz.data.DataSoal;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -28,20 +38,38 @@ public class QuizActivity extends AppCompatActivity {
 
     int arr, no;
     int x = 0;
-    int point = 0;
-    String jawaban;
+    int point = 0, point_lost = 0;
+    String jawaban, nomor, userId, userName, dateTime;
 
     DataSoal data = new DataSoal();
     List<Integer> numbers = new ArrayList<Integer>();
+    List<String> noTrue = new ArrayList<>();
+    List<String> noFalse = new ArrayList<>();
+
+    FirebaseAuth mAuth;
+    DatabaseReference scoreRef;
+    DatabaseReference trueRef;
+    DatabaseReference falseRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
+        mAuth = FirebaseAuth.getInstance();
+        userId = mAuth.getCurrentUser().getUid();
+        userName = mAuth.getCurrentUser().getDisplayName();
+        scoreRef = FirebaseDatabase.getInstance().getReference().child("Score");
+        trueRef = FirebaseDatabase.getInstance().getReference().child("True");
+        falseRef = FirebaseDatabase.getInstance().getReference().child("False");
+
         Toolbar toolbar = findViewById(R.id.toolbar_quiz);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Quiz");
+
+        Calendar calendarDate = Calendar.getInstance();
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat currentDate = new SimpleDateFormat("dd-MMMM-yyyy HH:mm");
+        dateTime = currentDate.format(calendarDate.getTime());
 
         txtNo = findViewById(R.id.txt_nomor);
         txtSoal = findViewById(R.id.txt_soal);
@@ -60,7 +88,7 @@ public class QuizActivity extends AppCompatActivity {
             int next = random.nextInt(20);
             if (!numbers.contains(next) && next!=20){
                 numbers.add(next);
-                Log.i("Numbers", "Random Number : " + numbers);
+                //Log.i("Numbers", "Random Number : " + numbers);
             }
         }while (numbers.size() < numberOfNumbersYouWant);
 
@@ -91,8 +119,32 @@ public class QuizActivity extends AppCompatActivity {
             rb_d.setText(data.getPilihan(no, 3));
             rb_e.setText(data.getPilihan(no, 4));
             jawaban = data.getJawaban(no);
+            nomor = data.getNoSoal(no);
         }else{
             //Toast.makeText(this, "Point: " + point, Toast.LENGTH_SHORT).show();
+//            Log.i("Numbers True", "Number : " + noTrue);
+//            Log.i("Numbers False", "Number : " + noFalse);
+
+            final String key = "Score-" + userId + dateTime;
+
+            HashMap scoreMap = new HashMap();
+            scoreMap.put("score_key", key);
+            scoreMap.put("score_point", point);
+            scoreMap.put("point_lost", point_lost);
+            scoreMap.put("user_id", userId);
+            scoreMap.put("user_name", userName);
+
+            scoreRef.child(key).updateChildren(scoreMap)
+                    .addOnCompleteListener(new OnCompleteListener() {
+                        @Override
+                        public void onComplete(@NonNull Task task) {
+                            if (task.isSuccessful()){
+                                trueRef.child(key).setValue(noTrue);
+                                falseRef.child(key).setValue(noFalse);
+                            }
+                        }
+                    });
+
             Intent next = new Intent(QuizActivity.this, HasilActivity.class);
             String totalPoint = String.valueOf(point);
             next.putExtra("score", totalPoint);
@@ -105,36 +157,51 @@ public class QuizActivity extends AppCompatActivity {
         if (rb_a.isChecked()){
             if (rb_a.getText().toString().equals(jawaban)){
                 point = point + 1;
+                noTrue.add(nomor);
                 setKonten();
             }else{
+                point_lost = point_lost + 1;
+                noFalse.add(nomor);
                 setKonten();
             }
         }else if (rb_b.isChecked()){
             if (rb_b.getText().toString().equals(jawaban)){
                 point = point + 1;
+                noTrue.add(nomor);
                 setKonten();
             }else{
+                point_lost = point_lost + 1;
+                noFalse.add(nomor);
                 setKonten();
             }
         }else if (rb_c.isChecked()){
             if (rb_c.getText().toString().equals(jawaban)){
                 point = point + 1;
+                noTrue.add(nomor);
                 setKonten();
             }else{
+                point_lost = point_lost + 1;
+                noFalse.add(nomor);
                 setKonten();
             }
         }else if (rb_d.isChecked()){
             if (rb_d.getText().toString().equals(jawaban)){
                 point = point + 1;
+                noTrue.add(nomor);
                 setKonten();
             }else{
+                point_lost = point_lost + 1;
+                noFalse.add(nomor);
                 setKonten();
             }
         }else if (rb_e.isChecked()){
             if (rb_e.getText().toString().equals(jawaban)){
                 point = point + 1;
+                noTrue.add(nomor);
                 setKonten();
             }else{
+                point_lost = point_lost + 1;
+                noFalse.add(nomor);
                 setKonten();
             }
         }else{
