@@ -15,4 +15,8 @@
     <string name="login_google">Login Google</string>
     <string name="log_out">Log Out</string>
     <string name="peringkat">Peringkat</string>
+    <string name="percobaan">Percobaan</string>
+    <string name="tanggal">Tanggal</string>
+    <string name="benar">Benar</string>
+    <string name="salah">Salah</string>
 </resources>

@@ -17,8 +17,12 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.quiz.R;
 import com.quiz.data.DataSoal;
 
@@ -37,7 +41,7 @@ public class QuizActivity extends AppCompatActivity {
     private Button btn_lanjut;
 
     int arr, no;
-    int x = 0;
+    int x = 0, jumlah = 0;
     int point = 0, point_lost = 0;
     String jawaban, nomor, userId, userName, dateTime;
 
@@ -51,6 +55,8 @@ public class QuizActivity extends AppCompatActivity {
     DatabaseReference trueRef;
     DatabaseReference falseRef;
 
+    Query query;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +68,7 @@ public class QuizActivity extends AppCompatActivity {
         scoreRef = FirebaseDatabase.getInstance().getReference().child("Score");
         trueRef = FirebaseDatabase.getInstance().getReference().child("True");
         falseRef = FirebaseDatabase.getInstance().getReference().child("False");
+        query = scoreRef.orderByChild("date");
 
         Toolbar toolbar = findViewById(R.id.toolbar_quiz);
         setSupportActionBar(toolbar);
@@ -128,7 +135,9 @@ public class QuizActivity extends AppCompatActivity {
             final String key = "Score-" + userId + dateTime;
 
             HashMap scoreMap = new HashMap();
+            scoreMap.put("test", "Test " + (jumlah+1));
             scoreMap.put("score_key", key);
+            scoreMap.put("date", dateTime);
             scoreMap.put("score_point", point);
             scoreMap.put("point_lost", point_lost);
             scoreMap.put("user_id", userId);
@@ -209,5 +218,26 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    for (DataSnapshot snap: dataSnapshot.getChildren()) {
+                        String uid = snap.child("user_id").getValue().toString();
+                        if (uid.equals(userId)){
+                            jumlah = jumlah+1;
+                        }
+                    }
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(QuizActivity.this, "Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }

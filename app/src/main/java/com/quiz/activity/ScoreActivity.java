@@ -1,5 +1,6 @@
 package com.quiz.activity;
 
+import android.app.ProgressDialog;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ public class ScoreActivity extends AppCompatActivity {
     private Query query_score;
     private List<Score> scores;
     private ListView listViewScore;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class ScoreActivity extends AppCompatActivity {
 
         scores = new ArrayList<>();
         listViewScore = findViewById(R.id.lv_score);
+        progressDialog = new ProgressDialog(this);
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         score_ref = database.getReference("Score");
@@ -53,6 +56,10 @@ public class ScoreActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        progressDialog.setTitle("Menampilkan Score");
+        progressDialog.setMessage("Please wait....");
+        progressDialog.show();
+        progressDialog.setCanceledOnTouchOutside(true);
         query_score.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -66,13 +73,15 @@ public class ScoreActivity extends AppCompatActivity {
 
                     ScoreAdapter scoreAdapter = new ScoreAdapter(ScoreActivity.this, scores);
                     listViewScore.setAdapter(scoreAdapter);
-
+                    progressDialog.dismiss();
+                }else{
+                    progressDialog.dismiss();
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                progressDialog.dismiss();
             }
         });
     }

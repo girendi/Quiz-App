@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/txt_percobaan"
+        android:text="@string/percobaan"
+        android:textAlignment="center"
+        android:layout_alignParentStart="true"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/txt_tanggal"
+        android:text="@string/tanggal"
+        android:textAlignment="center"
+        android:layout_centerHorizontal="true"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_alignParentEnd="true"
+        android:textAlignment="center"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txt_benar"
+            android:text="@string/benar"
+            android:textAlignment="center"
+            android:layout_alignParentStart="true"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/txt_salah"
+            android:text="@string/salah"
+            android:textAlignment="center"
+            android:layout_alignParentEnd="true"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            tools:ignore="RelativeOverlap" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

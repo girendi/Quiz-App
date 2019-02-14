@@ -3,9 +3,17 @@ package com.quiz.data;
 
 public class Score {
 
-    public String score_key, user_id, user_name;
+    public String test, score_key, date, user_id, user_name;
 
     public int score_point, point_lost;
+
+    public String getTest() {
+        return test;
+    }
+
+    public void setTest(String test) {
+        this.test = test;
+    }
 
     public String getScore_key() {
         return score_key;
@@ -13,6 +21,14 @@ public class Score {
 
     public void setScore_key(String score_key) {
         this.score_key = score_key;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public int getScore_point() {
