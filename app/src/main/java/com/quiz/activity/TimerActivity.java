@@ -2,11 +2,11 @@ package com.quiz.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -26,6 +26,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.quiz.R;
 import com.quiz.data.DataSoal;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -33,15 +35,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-public class QuizActivity extends AppCompatActivity {
+public class TimerActivity extends AppCompatActivity {
 
-    private TextView txtNo, txtSoal, txt_answer;
+    private TextView txtNo, txtTimer, txtSoal, txtAnswer;
+    CountDownTimer yourCountDownTimer;
+
     private RadioGroup rg;
     private RadioButton rb_a, rb_b, rb_c, rb_d, rb_e;
     private Button btn_lanjut, btn_check;
 
     int arr, no;
-    int x = 0, jumlah = 0;
+    int x = 0, jumlah = 0, time;
     int point = 0, point_lost = 0;
     String jawaban, nomor, userId, userName, dateTime;
 
@@ -63,7 +67,9 @@ public class QuizActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz);
+        setContentView(R.layout.activity_timer);
+
+        time = getIntent().getIntExtra("time", 0);
 
         mAuth = FirebaseAuth.getInstance();
         userId = mAuth.getCurrentUser().getUid();
@@ -73,7 +79,7 @@ public class QuizActivity extends AppCompatActivity {
         falseRef = FirebaseDatabase.getInstance().getReference().child("False");
         query = scoreRef.orderByChild("date");
 
-        Toolbar toolbar = findViewById(R.id.toolbar_quiz);
+        Toolbar toolbar = findViewById(R.id.toolbar_timer);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Quiz");
 
@@ -83,7 +89,9 @@ public class QuizActivity extends AppCompatActivity {
 
         txtNo = findViewById(R.id.txt_nomor);
         txtSoal = findViewById(R.id.txt_soal);
-        txt_answer = findViewById(R.id.txt_answer);
+        txtAnswer = findViewById(R.id.txt_answer);
+        txtTimer = findViewById(R.id.txt_time);
+
         rg = findViewById(R.id.rg);
         rb_a = findViewById(R.id.rb_a);
         rb_b = findViewById(R.id.rb_b);
@@ -93,7 +101,7 @@ public class QuizActivity extends AppCompatActivity {
         btn_lanjut = findViewById(R.id.btn_lanjut);
         btn_check = findViewById(R.id.btn_check);
         btn_lanjut.setVisibility(View.INVISIBLE);
-        txt_answer.setVisibility(View.INVISIBLE);
+        txtAnswer.setVisibility(View.INVISIBLE);
 
         int numberOfNumbersYouWant = 20;
         Random random = new Random();
@@ -106,7 +114,6 @@ public class QuizActivity extends AppCompatActivity {
             }
         }while (numbers.size() < numberOfNumbersYouWant);
 
-
         setKonten();
 
         btn_lanjut.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +122,7 @@ public class QuizActivity extends AppCompatActivity {
                 setKonten();
                 btn_lanjut.setVisibility(View.INVISIBLE);
                 btn_check.setVisibility(View.VISIBLE);
-                txt_answer.setVisibility(View.INVISIBLE);
+                txtAnswer.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -125,10 +132,65 @@ public class QuizActivity extends AppCompatActivity {
                 cekJawaban();
                 btn_lanjut.setVisibility(View.VISIBLE);
                 btn_check.setVisibility(View.INVISIBLE);
-                txt_answer.setVisibility(View.VISIBLE);
+                txtAnswer.setVisibility(View.VISIBLE);
             }
         });
+    }
 
+    private void cekJawaban() {
+        if (rb_a.isChecked()){
+            if (rb_a.getText().toString().equals(jawaban)){
+                point = point + 1;
+                noTrue.add(nomor);
+                txtAnswer.setText(textBenar);
+            }else{
+                point_lost = point_lost + 1;
+                noFalse.add(nomor);
+                txtAnswer.setText(textSalah + jawaban);
+            }
+        }else if (rb_b.isChecked()){
+            if (rb_b.getText().toString().equals(jawaban)){
+                point = point + 1;
+                noTrue.add(nomor);
+                txtAnswer.setText(textBenar);
+            }else{
+                point_lost = point_lost + 1;
+                noFalse.add(nomor);
+                txtAnswer.setText(textSalah + jawaban);
+            }
+        }else if (rb_c.isChecked()){
+            if (rb_c.getText().toString().equals(jawaban)){
+                point = point + 1;
+                noTrue.add(nomor);
+                txtAnswer.setText(textBenar);
+            }else{
+                point_lost = point_lost + 1;
+                noFalse.add(nomor);
+                txtAnswer.setText(textSalah + jawaban);
+            }
+        }else if (rb_d.isChecked()){
+            if (rb_d.getText().toString().equals(jawaban)){
+                point = point + 1;
+                noTrue.add(nomor);
+                txtAnswer.setText(textBenar);
+            }else{
+                point_lost = point_lost + 1;
+                noFalse.add(nomor);
+                txtAnswer.setText(textSalah + jawaban);
+            }
+        }else if (rb_e.isChecked()){
+            if (rb_e.getText().toString().equals(jawaban)){
+                point = point + 1;
+                noTrue.add(nomor);
+                txtAnswer.setText(textBenar);
+            }else{
+                point_lost = point_lost + 1;
+                noFalse.add(nomor);
+                txtAnswer.setText(textSalah + jawaban);
+            }
+        }else{
+            Toast.makeText(this, "Silahkan Pilih Jawaban Anda", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void setKonten() {
@@ -151,98 +213,57 @@ public class QuizActivity extends AppCompatActivity {
             //Toast.makeText(this, "Point: " + point, Toast.LENGTH_SHORT).show();
 //            Log.i("Numbers True", "Number : " + noTrue);
 //            Log.i("Numbers False", "Number : " + noFalse);
-
-            final String key = "Score-" + userId + dateTime;
-
-            HashMap scoreMap = new HashMap();
-            scoreMap.put("test", "Test " + (jumlah+1));
-            scoreMap.put("score_key", key);
-            scoreMap.put("date", dateTime);
-            scoreMap.put("score_point", point);
-            scoreMap.put("point_lost", point_lost);
-            scoreMap.put("user_id", userId);
-            scoreMap.put("user_name", userName);
-
-            scoreRef.child(key).updateChildren(scoreMap)
-                    .addOnCompleteListener(new OnCompleteListener() {
-                        @Override
-                        public void onComplete(@NonNull Task task) {
-                            if (task.isSuccessful()){
-                                trueRef.child(key).setValue(noTrue);
-                                falseRef.child(key).setValue(noFalse);
-                            }
-                        }
-                    });
-
-            Intent next = new Intent(QuizActivity.this, HasilActivity.class);
-            String totalPoint = String.valueOf(point);
-            next.putExtra("score", totalPoint);
-            startActivity(next);
-            finish();
+            yourCountDownTimer.onFinish();
         }
         x++;
-    }
-
-    @SuppressLint("SetTextI18n")
-    private void cekJawaban() {
-        if (rb_a.isChecked()){
-            if (rb_a.getText().toString().equals(jawaban)){
-                point = point + 1;
-                noTrue.add(nomor);
-                txt_answer.setText(textBenar);
-            }else{
-                point_lost = point_lost + 1;
-                noFalse.add(nomor);
-                txt_answer.setText(textSalah + jawaban);
-            }
-        }else if (rb_b.isChecked()){
-            if (rb_b.getText().toString().equals(jawaban)){
-                point = point + 1;
-                noTrue.add(nomor);
-                txt_answer.setText(textBenar);
-            }else{
-                point_lost = point_lost + 1;
-                noFalse.add(nomor);
-                txt_answer.setText(textSalah + jawaban);
-            }
-        }else if (rb_c.isChecked()){
-            if (rb_c.getText().toString().equals(jawaban)){
-                point = point + 1;
-                noTrue.add(nomor);
-                txt_answer.setText(textBenar);
-            }else{
-                point_lost = point_lost + 1;
-                noFalse.add(nomor);
-                txt_answer.setText(textSalah + jawaban);
-            }
-        }else if (rb_d.isChecked()){
-            if (rb_d.getText().toString().equals(jawaban)){
-                point = point + 1;
-                noTrue.add(nomor);
-                txt_answer.setText(textBenar);
-            }else{
-                point_lost = point_lost + 1;
-                noFalse.add(nomor);
-                txt_answer.setText(textSalah + jawaban);
-            }
-        }else if (rb_e.isChecked()){
-            if (rb_e.getText().toString().equals(jawaban)){
-                point = point + 1;
-                noTrue.add(nomor);
-                txt_answer.setText(textBenar);
-            }else{
-                point_lost = point_lost + 1;
-                noFalse.add(nomor);
-                txt_answer.setText(textSalah + jawaban);
-            }
-        }else{
-            Toast.makeText(this, "Silahkan Pilih Jawaban Anda", Toast.LENGTH_SHORT).show();
-        }
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        yourCountDownTimer = new CountDownTimer(time, 1000){
+            public void onTick(long millisUntilFinished){
+                NumberFormat f = new DecimalFormat("00");
+                long min = (millisUntilFinished / 60000) % 60;
+                long sec = (millisUntilFinished / 1000) % 60;
+                txtTimer.setText(f.format(min) + ":" + f.format(sec));
+            }
+            public  void onFinish(){
+//                startActivity(new Intent(getApplicationContext(), StartQuizActivity.class));
+//                Toast.makeText(TimerActivity.this, "Timer Stop", Toast.LENGTH_SHORT).show();
+
+                int point_zero = 20 - (point + point_lost);
+
+                final String key = "Score-" + userId + dateTime;
+
+                HashMap scoreMap = new HashMap();
+                scoreMap.put("test", "Test " + (jumlah+1));
+                scoreMap.put("score_key", key);
+                scoreMap.put("date", dateTime);
+                scoreMap.put("score_point", point);
+                scoreMap.put("point_lost", point_lost + point_zero);
+                scoreMap.put("user_id", userId);
+                scoreMap.put("user_name", userName);
+
+                scoreRef.child(key).updateChildren(scoreMap)
+                        .addOnCompleteListener(new OnCompleteListener() {
+                            @Override
+                            public void onComplete(@NonNull Task task) {
+                                if (task.isSuccessful()){
+                                    trueRef.child(key).setValue(noTrue);
+                                    falseRef.child(key).setValue(noFalse);
+                                }
+                            }
+                        });
+
+                Intent next = new Intent(TimerActivity.this, HasilActivity.class);
+                String totalPoint = String.valueOf(point);
+                next.putExtra("score", totalPoint);
+                startActivity(next);
+                finish();
+            }
+        }.start();
+
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -258,7 +279,7 @@ public class QuizActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(QuizActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TimerActivity.this, "Error", Toast.LENGTH_SHORT).show();
             }
         });
     }

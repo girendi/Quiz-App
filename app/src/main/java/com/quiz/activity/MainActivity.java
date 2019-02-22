@@ -46,13 +46,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), MateriActivity.class));
+                finish();
             }
         });
 
         btn_quiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), QuizActivity.class));
+                startActivity(new Intent(getApplicationContext(), StartQuizActivity.class));
+                finish();
             }
         });
 
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), ScoreActivity.class));
+                finish();
             }
         });
 
@@ -67,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),ResultActivity.class));
+                finish();
             }
         });
 
@@ -74,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mAuth.signOut();
+                //finish();
             }
         });
     }
