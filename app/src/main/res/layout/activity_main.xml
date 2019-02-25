@@ -70,8 +70,21 @@
             />
 
         <Button
-            android:id="@+id/btn_logout"
+            android:id="@+id/btn_biografi"
             android:layout_below="@id/btn_result"
+            android:text="@string/biografi"
+            android:textColor="@color/btn_color"
+            android:textSize="22sp"
+            android:background="@drawable/button_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:layout_marginTop="25dp"
+            />
+
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_below="@id/btn_biografi"
             android:text="@string/log_out"
             android:textColor="@color/btn_color"
             android:textSize="22sp"

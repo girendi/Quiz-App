@@ -6,12 +6,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/logo4"
-        android:label="@string/app_name"
-        android:roundIcon="@drawable/logo4"
+        android:icon="@drawable/logohg"
+        android:label="@string/name_quiz"
+        android:roundIcon="@drawable/logohg"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-
+        <activity android:name=".activity.BiografiActivity"></activity>
         <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,11 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.HasilActivity" />
-
         <activity
             android:name=".activity.MateriActivity"
             android:parentActivityName=".activity.MainActivity" />
@@ -38,11 +36,10 @@
             android:parentActivityName=".activity.MainActivity" />
         <activity
             android:name=".activity.TimerActivity"
-            android:parentActivityName=".activity.StartQuizActivity"/>
+            android:parentActivityName=".activity.StartQuizActivity" />
         <activity
             android:name=".activity.StartQuizActivity"
             android:parentActivityName=".activity.MainActivity" />
-
     </application>
 
 </manifest>

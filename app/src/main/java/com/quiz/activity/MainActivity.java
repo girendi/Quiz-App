@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_score;
     private Button btn_result;
     private Button btn_logout;
+    private Button btn_biografi;
     private Toolbar toolbar;
 
     private FirebaseAuth mAuth;
@@ -40,13 +41,13 @@ public class MainActivity extends AppCompatActivity {
         initComponent();
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Dashboard");
+        getSupportActionBar().setTitle("Quiz Hidrolosis Garam");
 
         btn_materi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), MateriActivity.class));
-                finish();
+//                finish();
             }
         });
 
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), StartQuizActivity.class));
-                finish();
+//                finish();
             }
         });
 
@@ -62,15 +63,23 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), ScoreActivity.class));
-                finish();
+//                finish();
             }
         });
 
         btn_result.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),ResultActivity.class));
-                finish();
+                startActivity(new Intent(getApplicationContext(), ResultActivity.class));
+//                finish();
+            }
+        });
+
+        btn_biografi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), BiografiActivity.class));
+//                finish();
             }
         });
 
@@ -89,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
         btn_score = findViewById(R.id.btn_score);
         btn_result = findViewById(R.id.btn_result);
         btn_logout = findViewById(R.id.btn_logout);
+        btn_biografi = findViewById(R.id.btn_biografi);
         toolbar = findViewById(R.id.toolbar_main);
     }
 
