@@ -13,19 +13,18 @@ public class DataSoal {
             {"07", "Diketahui beberapa senyawa berikut :\n1. CaF2\n2. Fe(NO3)2\n3. K3PO4\n4. Al2S3\n5. ZnSO4\nBerdasarkan data diatas, garam yang memiliki pH < 7 adalah  . . .", "1 dan 3"},
             {"08", "Garam di bawah ini yang jika dilarutkan ke dalam air bersifat basa adalah …", "CH3COOK"},
             {"09", "Garam berikut yang larutannya dalam air\t dapat membirukan kertas lamus merah adalah ...", "natrium asetat"},
-            {"10", "pH air menjadi lebih kecil dari 7 jika ke dalamnya dilarutkan ….", "ammonium sulfat"},
-            {"11", "Pernyataan yang benar bahwa larutan CH3COONa dalam air mempunyai pH > 7 adalah ….", "Ion CH3COO- memberi proton dari H2O"},
-            {"12", "Bila 200 mL HCl 0,1 M dicampur dengan 100 mL NH3 0,2 M pernyataan yang benar adalah akan terbentuk….", "garamterhidrolisis sebagian bersifat basa"},
-            {"13", "Reaksi antara asam dan basa berikut yang menghasilkan garam yang terhidrolisis sebagian dan bersifat asam adalah ….", "10 mL HCl 0,1 M + 10 mL NH4OH 0,2 M"},
-            {"14", "Campuran yang menghasilkan larutan garam yang terhidrolisis sebagian dan membirukan kertas lakmus merah adalah ….", "10 mL HCl 0,1 M + 10 mL NH4OH 0,2 M"},
-            {"15", "Pernyataan yang benar tentang larutan garam yang terjadi dari campuran ammonium hidroksida dan asam klorida dengan jumlah mol yang sama adalah ….", "pH > 7"},
-            {"16", "Jika diketahui harga Kb NH3 = 1.10^-5 dan Kw = 10^-14 maka Kh dari larutan NH4Cl adalah", "10^-9"},
-            {"17", "Jika tetapan kesetimbangan asam asetat = 10^-5 maka pH larutan natrium asetat 0,01 M adalah ….", "8,5"},
-            {"18", "Besarnya pH dari 100 mL larutan NH4Cl 0,1 M adalah …. (Kb = 10^-5)", "5,0"},
-            {"19", "Harga pH dari larutan NH4NO2 0,01 M jika diketahui Ka = 10^-4 dan Kb = 10^-5 adalah ….", "6,5"},
-            {"20", "Sebanyak 4,1 gram CH3COONa dilarutkan dalam air hingga volumenya 500 mL. pH larutan yang terjadi adalah ….(Ka = 10^-5, Ar C = 12; Ar H = 1; Ar O = 16;\n" +
-                    "Ar Na = 23)", "9"}
-
+            {"10", "pH air menjadi lebih kecil dari 7 jika ke dalamnya dilarutkan ….", "ammonium sulfat"}
+//            ,{"11", "Pernyataan yang benar bahwa larutan CH3COONa dalam air mempunyai pH > 7 adalah ….", "Ion CH3COO- memberi proton dari H2O"},
+//            {"12", "Bila 200 mL HCl 0,1 M dicampur dengan 100 mL NH3 0,2 M pernyataan yang benar adalah akan terbentuk….", "garamterhidrolisis sebagian bersifat basa"},
+//            {"13", "Reaksi antara asam dan basa berikut yang menghasilkan garam yang terhidrolisis sebagian dan bersifat asam adalah ….", "10 mL HCl 0,1 M + 10 mL NH4OH 0,2 M"},
+//            {"14", "Campuran yang menghasilkan larutan garam yang terhidrolisis sebagian dan membirukan kertas lakmus merah adalah ….", "10 mL HCl 0,1 M + 10 mL NH4OH 0,2 M"},
+//            {"15", "Pernyataan yang benar tentang larutan garam yang terjadi dari campuran ammonium hidroksida dan asam klorida dengan jumlah mol yang sama adalah ….", "pH > 7"},
+//            {"16", "Jika diketahui harga Kb NH3 = 1.10^-5 dan Kw = 10^-14 maka Kh dari larutan NH4Cl adalah", "10^-9"},
+//            {"17", "Jika tetapan kesetimbangan asam asetat = 10^-5 maka pH larutan natrium asetat 0,01 M adalah ….", "8,5"},
+//            {"18", "Besarnya pH dari 100 mL larutan NH4Cl 0,1 M adalah …. (Kb = 10^-5)", "5,0"},
+//            {"19", "Harga pH dari larutan NH4NO2 0,01 M jika diketahui Ka = 10^-4 dan Kb = 10^-5 adalah ….", "6,5"},
+//            {"20", "Sebanyak 4,1 gram CH3COONa dilarutkan dalam air hingga volumenya 500 mL. pH larutan yang terjadi adalah ….(Ka = 10^-5, Ar C = 12; Ar H = 1; Ar O = 16;\n" +
+//                    "Ar Na = 23)", "9"}
     };
 
     public String[][] pilihan = new String[][]{
@@ -38,17 +37,17 @@ public class DataSoal {
             {"1 dan 2","1 dan 3","2 dan 5","3 dan 4","4 dan 5"},
             {"Na2SO4","NaCl","KCl","NH4Cl","CH3COOK"},
             {"ammonium klorida","ammonium ase tat","natrium asetat","kalsium sulfat","natrium sulfat"},
-            {"natrium karbonat","natrium klorida","natrium asetat","ammonium sulfat","natrium sulfat"},
-            {"Ion Na+ menerima proton dari H2O","Ion Na+ bereaksi dengan air membentuk NaOH","Ion CH3COO- menerima proton dari H2O","Ion CH3COO- memberi proton dari H2O","CH3COOH mempunyai harga Ka yang kecil"},
-            {"garam tidak terhidrolisis","garam terhidrolisis sebagian bersifat asam","garam terhidrolisis sebagian bersifat basa","garam terhidrolisis total bersifat asam","garam terhidrolisis total bersifat basa"},
-            {"10 mL NaOH 0,1 M + 10 mL CH3COOH 0,1 M","10 mL NaOH 0,1 M + 10 mL CH3COOH 0,2 M","10 mL HCl 0,1 M + 10 mL NH4OH 0,1 M","10 mL HCl 0,1 M + 10 mL NH4OH 0,2 M","10 mL HCl 0,1 M + 10 mL NaOH 0,1 M"},
-            {"10 mL NaOH 0,1 M + 10 mL CH3COOH 0,1 M","10 mL NaOH 0,1 M + 10 mL CH3COOH 0,2 M","10 mL HCl 0,1 M + 10 mL NH4OH 0,1 M","10 mL HCl 0,1 M + 10 mL NH4OH 0,2 M","10 mL HCl 0,1 M + 10 mL NaOH 0,1 M"},
-            {"pH = 7","pH > 7","pH < pOH","[H+] > [OH-]","[H+] < [OH-]"},
-            {"10^-5","10^-7","10^-9","10^-12","10^-14"},
-            {"7,0","7,5","8,0","8,5","9,0"},
-            {"4,0","4,5","5,0","5,5","6,0"},
-            {"5,0","5,5","6,0","6,5","9,0"},
-            {"5,5 – log 5","6,5 – log 5","8,5 + log 5","9","13 + log 5"}
+            {"natrium karbonat","natrium klorida","natrium asetat","ammonium sulfat","natrium sulfat"}
+//            ,{"Ion Na+ menerima proton dari H2O","Ion Na+ bereaksi dengan air membentuk NaOH","Ion CH3COO- menerima proton dari H2O","Ion CH3COO- memberi proton dari H2O","CH3COOH mempunyai harga Ka yang kecil"},
+//            {"garam tidak terhidrolisis","garam terhidrolisis sebagian bersifat asam","garam terhidrolisis sebagian bersifat basa","garam terhidrolisis total bersifat asam","garam terhidrolisis total bersifat basa"},
+//            {"10 mL NaOH 0,1 M + 10 mL CH3COOH 0,1 M","10 mL NaOH 0,1 M + 10 mL CH3COOH 0,2 M","10 mL HCl 0,1 M + 10 mL NH4OH 0,1 M","10 mL HCl 0,1 M + 10 mL NH4OH 0,2 M","10 mL HCl 0,1 M + 10 mL NaOH 0,1 M"},
+//            {"10 mL NaOH 0,1 M + 10 mL CH3COOH 0,1 M","10 mL NaOH 0,1 M + 10 mL CH3COOH 0,2 M","10 mL HCl 0,1 M + 10 mL NH4OH 0,1 M","10 mL HCl 0,1 M + 10 mL NH4OH 0,2 M","10 mL HCl 0,1 M + 10 mL NaOH 0,1 M"},
+//            {"pH = 7","pH > 7","pH < pOH","[H+] > [OH-]","[H+] < [OH-]"},
+//            {"10^-5","10^-7","10^-9","10^-12","10^-14"},
+//            {"7,0","7,5","8,0","8,5","9,0"},
+//            {"4,0","4,5","5,0","5,5","6,0"},
+//            {"5,0","5,5","6,0","6,5","9,0"},
+//            {"5,5 – log 5","6,5 – log 5","8,5 + log 5","9","13 + log 5"}
     };
 
     public String getNoSoal(int x){

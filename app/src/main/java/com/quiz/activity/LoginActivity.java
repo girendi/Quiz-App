@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -27,6 +28,8 @@ import com.quiz.R;
 public class LoginActivity extends AppCompatActivity {
 
     private SignInButton btn_login;
+
+    private Button btn_score;
 
     private static final int RC_SIGN_IN = 1;
 
@@ -53,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         btn_login = findViewById(R.id.btn_login);
+        btn_score = findViewById(R.id.btn_score);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -75,6 +79,12 @@ public class LoginActivity extends AppCompatActivity {
                 signIn();
             }
         });
+        btn_score.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewScore();
+            }
+        });
     }
 
     @Override
@@ -86,6 +96,10 @@ public class LoginActivity extends AppCompatActivity {
     private void signIn(){
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    private void viewScore(){
+        startActivity(new Intent(getApplicationContext(), ScoreActivity.class));
     }
 
     @Override

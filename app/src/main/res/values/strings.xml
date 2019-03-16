@@ -34,4 +34,5 @@
     <string name="text01_bio">Nama saya Lusi Lamria Samosir, seorang mahasiswa Program Studi Pendidikan Kimia Bilingual angkatan 2015 Fakultas Matematika dan Ilmu Pengetahuan Alam, Universitas Negeri Medan (UNIMED). Saya lahir di Desa Pagar Batu, Kec. Balige Kab. Toba Samosir pada tanggal 08 Agustus 1997. Riwayat pendidikan yang saya tempuh hingga saat ini adalah menempuh pendidikan sekolah dasar di SD N 176367 Soposurung (2003), sekolah menengah pertama di SMP N 4 Balige (2009), sekolah menengah atas di SMA N 1 Balige (2012), dan saat ini sedang menempuh pendidikan S1 di Universitas Negeri Medan (UNIMED) (2015). </string>
     <string name="text02_bio">Tujuan saya dalam membuat LKS Berbasis Android ini adalah untuk meningkatkan motivasi dan hasil belajar siswa dalam pembelajaran kimia khususnya pada topik hidrolisis garam, dan dengan adanya LKS Berbasis Android ini siswa mampu bekerja mandiri kapan pun dan dimana pun. </string>
     <string name="terimakasih">Sekian data singkat mengenai saya. Terimakasih</string>
+    <string name="lihat_score">Lihat Score</string>
 </resources>
